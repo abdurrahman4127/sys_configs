@@ -1,3 +1,10 @@
+it is supposed to look like this:
+┌─[ar@jarvis]─[~]
+└──╼ $
+
+but now it looks like this:
+ar@jarvis:~$
+
 # for terminal view
 PS1=
 "
