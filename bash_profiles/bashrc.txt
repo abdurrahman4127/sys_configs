@@ -1,0 +1,76 @@
+┌─[ar@jarvis][~]
+└──╼ $cat .bashrc
+bind '"\C-p": menu-complete'
+
+# for terminal view
+#PS1="\[\033[0;31m\]┌─[\[\033[0;32m\]\u\[\033[0;93m\]@\[\033[0;36m\]\h\[\033[0;31m\]][\w]\n\[\033[0;31m\]└──╼ \[\033[0;93m\]$\[\033[0m\]"
+PS1="\[\033[0;31m\]┌─[\[\033[0;32m\]\u\[\033[0;93m\]@\[\033[0;36m\]\h\[\033[0;31m\]][\[\033[0;90m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]└──╼ \[\033[0;93m\]$\[\033[0m\]"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+eval "$__conda_setup"
+else
+if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+. "/anaconda3/etc/profile.d/conda.sh"
+else
+export PATH="/anaconda3/bin:$PATH"
+fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# alias for copying the output; format: <some_command> | xsel --clipboard
+alias copy='xsel --clipboard'
+
+# alias for internet configuration
+alias ipconfig='ifconfig'
+
+# alias for converting file to a different extension
+alias convert='unoconv'
+
+# alias for shutdown
+alias sdn='shutdown now'
+
+# alias for update & upgrade
+alias uu='sudo apt update && sudo apt upgrade'
+
+# alias for gnome calculator
+alias calc='gnome-calculator &'
+
+# alias for exiting
+alias x='exit'
+
+# alias for cisco packet-tracer
+alias pt='sudo packettracer'
+
+# alias for batcat
+alias bat='batcat'
+
+# alias for renaming 'mkv' files to 'mp4'
+alias rename_mkv='rename 's/\.mkv$/\.mp4/' *.mkv'
+
+#alias for opening images with gwenviwe
+alias img='gwenview'
+
+
+export PATH=/bin/lscript:/bin/lscript:/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/home/ar/.local/bin:/snap/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+export PATH=/bin/lscript:/bin/lscript:/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/home/ar/.local/bin:/snap/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+. "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=/usr/local/nodejs/bin:$PATH
+
+
+# Enable bash completion in interactive shells
+if ! shopt -oq posix; then
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+. /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+. /etc/bash_completion
+fi
+fi 
