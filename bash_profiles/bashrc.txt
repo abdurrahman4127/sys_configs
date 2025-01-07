@@ -1,6 +1,6 @@
-# for terminal view
-#PS1="\[\033[0;31m\]┌─[\[\033[0;32m\]\u\[\033[0;93m\]@\[\033[0;36m\]\h\[\033[0;31m\]][\w]\n\[\033[0;31m\]└──╼ \[\033[0;93m\]$\[\033[0m\]"
-PS1="\[\033[0;31m\]┌─[\[\033[0;32m\]\u\[\033[0;93m\]@\[\033[0;36m\]\h\[\033[0;31m\]][\[\033[0;90m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]└──╼ \[\033[0;93m\]$\[\033[0m\]"
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -84,7 +84,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+# some more aliases
 alias ll='ls -lh'
 alias la='ls -lha'
 alias l='ls -CF'
@@ -93,6 +93,7 @@ alias _='sudo'
 alias _i='sudo -i'
 alias fucking='sudo'
 alias please='sudo'
+alias where='whereis'
 
 # Set 'man' colors
 if [ "$color_prompt" = yes ]; then
@@ -177,10 +178,23 @@ alias bat='batcat'
 alias img='gwenview'
 
 # alias for renaming 'mkv' files to 'mp4'
-alias rename_mkv='rename 's/\.mkv$/\.mp4/' *.mkv'
+alias rename_mkv='for file in *.mkv; do mv -- "$file" "${file%.mkv}.mp4"; done'
 
 # auto-suggestion in bash with ble.sh
 source /usr/local/ble.sh/out/ble.sh
 
 # for 3d slicer application
 alias slicer='/usr/local/slicer-5.6.2/Slicer'
+
+# to push to the main branch
+alias push='git push origin main'
+
+# shortening the reinstallation command
+alias reinstall='sudo apt install --reinstall'
+
+# alias for install
+alias install='sudo apt install'
+
+# alias for the 'whereis' command
+alias where='whereis'
+alias w='where'
