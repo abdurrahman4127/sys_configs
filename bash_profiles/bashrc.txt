@@ -163,7 +163,10 @@ alias convert='unoconv'
 alias sdn='shutdown now'
 
 # alias for update & upgrade
-alias uu='sudo apt update && sudo apt upgrade'
+alias uu='sudo apt update && sudo apt upgrade && sudo parrot-upgrade'
+
+# alish for auto-purge/remove/clean
+alias cc='sudo apt autoremove && sudo apt autopurge && sudo apt autoclean'
 
 # alias for gnome calculator
 alias calc='gnome-calculator &'
@@ -198,3 +201,12 @@ alias install='sudo apt install'
 # alias for the 'whereis' command
 alias where='whereis'
 alias w='where'
+
+# fixing multi-line command issue
+ble-bind -m 'emacs' -f 'RET' 'accept-line'
+ble-bind -m 'isearch' -f 'RET' 'accept-line'
+ble-bind -m 'nsearch' -f 'RET' 'accept-line'
+
+
+# Created by `pipx` on 2025-02-23 10:41:25
+export PATH="$PATH:/home/ar/.local/bin"
