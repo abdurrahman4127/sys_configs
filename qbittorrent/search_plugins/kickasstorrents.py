@@ -6,7 +6,7 @@ from novaprinter import prettyPrinter
 
 
 class kickasstorrents(object):
-    url = 'https://kickasstorrents.cr/'
+    url = 'https://kat.am/'
     name = 'Kickasstorrents'
 
     supported_categories = {'all': '', 'movies': 'movies', 'tv': 'tv', 'music': 'music', 'games': 'games', 'anime': 'anime', 'software': 'apps'}
