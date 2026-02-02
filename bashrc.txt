@@ -1,0 +1,160 @@
+# for ble.sh
+[[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --attach=none
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt
+force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;37m\]\342\234\227\[\033[0;31m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
+else
+    PS1='┌──[\u@\h]─[\w]\n└──╼ \$ '
+fi
+
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;31m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more aliases
+alias ll='ls -lh'
+alias la='ls -lha'
+alias l='ls -CF'
+alias em='emacs -nw'
+alias _='sudo'
+alias _i='sudo -i'
+alias fucking='sudo'
+alias please='sudo'
+alias where='whereis'
+
+# Set 'man' colors
+if [ "$color_prompt" = yes ]; then
+    man() {
+    env \
+    LESS_TERMCAP_mb=$'\e[01;31m' \
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    man "$@"
+    }
+fi
+
+function hex-encode() { echo "$@" | xxd -p; }
+function hex-decode() { echo "$@" | xxd -p -r; }
+function rot13() { echo "$@" | tr 'A-Za-z' 'N-ZA-Mn-za-m'; }
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# alias for copying the output; format: <some_command> | xsel --clipboard
+alias copy='xsel --clipboard'
+alias ipconfig='ifconfig'
+alias pt='sudo packettracer'
+alias convert='unoconv'
+alias sdn='shutdown now'
+alias uu='sudo apt update && sudo apt upgrade -y && sudo parrot-upgrade -y'
+alias cc='sudo apt autoremove -y && sudo apt autopurge -y && sudo apt autoclean -y'
+alias calc='gnome-calculator &'
+alias x='exit'
+alias bat='batcat'
+alias img='gwenview'
+alias rename_mkv='for file in *.mkv; do mv -- "$file" "${file%.mkv}.mp4"; done'
+alias sound='alsamixer'
+
+alias slicer='/usr/local/slicer-5.6.2/Slicer'
+alias push='git push origin main'
+alias reinstall='sudo apt install --reinstall'
+alias install='sudo apt install'
+alias where='whereis'
+alias w='where'
+
+# for ble.sh
+[[ ! ${BLE_VERSION-} ]] || ble-attach
+
+# to disable the right-arrow key
+#xmodmap -e "keycode 114 = NoSymbol"
+
+# to enable 
+#sed -i 's/keycode 114 =/keycode 114 = Right NoSymbol Right/' ~/.Xmodmap
+#xmodmap ~/.Xmodmap
+
+# to position the MATE desktop environment's taskbar windows-applets' position to the left
+# dconf write /org/mate/panel/objects/object-1/position 220
+# mate-panel --replace &
+
+# gpu shortcut
+alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia '
+
+# Wi-Fi gui
+alias wifi='nmtui'
+
+# keyboard rgb light
+alias rgb='openrgb'
