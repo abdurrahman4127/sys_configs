@@ -50,7 +50,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;37m\]\342\234\227\[\033[0;31m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
 else
-    PS1='┌──[\u@\h]─[\w]\n└──╼ \$ '
+    PS1='┌──[\u@\h]─[\w]\n└──╼\$ '
 fi
 
 case "$TERM" in
@@ -120,8 +120,8 @@ alias ipconfig='ifconfig'
 alias pt='sudo packettracer'
 alias convert='unoconv'
 alias sdn='shutdown now'
-alias uu='sudo apt update && sudo apt upgrade && sudo parrot-upgrade'
-alias cc='sudo apt autoremove && sudo apt autopurge && sudo apt autoclean'
+alias uu='sudo apt update -y && sudo parrot-upgrade -y'
+alias cc='sudo apt autoremove -y && sudo apt autopurge -y && sudo apt autoclean -y'
 alias calc='gnome-calculator &'
 alias x='exit'
 alias bat='batcat'
@@ -140,7 +140,9 @@ alias w='where'
 [[ ! ${BLE_VERSION-} ]] || ble-attach
 
 # to disable the right-arrow key
-xmodmap -e "keycode 114 = NoSymbol"
+#xmodmap -e "keycode 114 = NoSymbol"
+#xmodmap -e "keycode 114 = Right"
+
 
 # to position the MATE desktop environment's taskbar windows-applets' position to the left
 # dconf write /org/mate/panel/objects/object-1/position 220
