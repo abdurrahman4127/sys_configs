@@ -3,34 +3,49 @@
   "logo": {
     "source": "/home/ar/.config/fastfetch/logo.png",
     "type": "chafa",
-    "width": 53,
+    "width": 55,
     "height": 23
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "magenta"
+    },
+    "percent": {
+      "type": 2
+    },
+    "key": {
+      "width": 18
+    }
   },
   "modules": [
     "title",
     "separator",
-    "os",
-    "host",
-    "kernel",
-    "uptime",
-    "packages",
-    "shell",
-    "display",
-    "de",
-    "wm",
-    "wmtheme",
-    "theme",
-    "terminal",
-    "terminalfont",
-    "cpu",
-    "gpu",
-    "memory",
-    "swap",
-    "disk",
-    "localip",
-    "battery",
-    "poweradapter",
-    "break",
-    "colors"
+    { "type": "os", "key": "󰣇 OS", "keyColor": "blue" },
+    { "type": "host", "key": "󰌢 Host", "keyColor": "blue" },
+    { "type": "kernel", "key": " Kernel", "keyColor": "blue" },
+    { "type": "uptime", "key": "󱎫 Uptime", "keyColor": "blue" },
+    { "type": "packages", "key": "󰏖 Packages", "keyColor": "blue" },
+    { "type": "de", "key": " DE", "keyColor": "magenta" },
+    { "type": "wm", "key": " WM", "keyColor": "magenta" },
+    { "type": "theme", "key": "󰉼 Theme", "keyColor": "magenta" },
+    { "type": "cpu", "key": " CPU", "temp": true, "keyColor": "yellow" },
+    { "type": "gpu", "key": "󰢮 GPU", "temp": true, "keyColor": "yellow" },
+    { "type": "board", "key": "󰢮 Motherboard", "keyColor": "yellow" },
+    { "type": "bios", "key": "󰾲 BIOS", "keyColor": "yellow" },
+    { "type": "memory", "key": "󰍛 RAM", "keyColor": "yellow" },
+    { "type": "disk", "key": "󱛟 NVMe 1 (/)", "folders": "/", "keyColor": "yellow" },
+    { "type": "disk", "key": "󱛟 NVMe 2", "folders": "/mnt/nvme2tb", "keyColor": "yellow" },
+    { "type": "disk", "key": "󱛟 NVMe 3", "folders": "/mnt/kingston1tb", "keyColor": "yellow" },
+    { "type": "swap", "key": "󰓡 Swap", "keyColor": "yellow" },
+    { "type": "display", "key": "󰍹 Monitor", "keyColor": "green" },
+    { "type": "shell", "key": "󱆃 Shell", "keyColor": "green" },
+    { "type": "terminal", "key": " Terminal", "keyColor": "green" },
+    { "type": "wifi", "key": " WiFi", "keyColor": "white" },
+    { "type": "bluetooth", "key": " Bluetooth", "keyColor": "white" },
+    { "type": "battery", "key": "󰁹 Battery", "keyColor": "red" },
+    { "type": "poweradapter", "key": "󰚥 Power", "keyColor": "red" },
+    { "type": "sound", "key": "󱍚 Sound", "keyColor": "red" },
+    { "type": "media", "key": "󰝚 Media", "format": "{3} ➜ {1}", "keyColor": "red" }
   ]
 }
