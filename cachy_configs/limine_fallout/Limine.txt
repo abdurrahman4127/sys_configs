@@ -1,0 +1,25 @@
+timeout: 15
+default_entry: 2
+remember_last_entry: yes
+
+wallpaper: boot():/background.jpg
+
+term_font: boot():/PHXEGA8.F14
+term_font_size: 8x14
+term_font_scale: 2x2
+#if the font is too large for your screen, remove term_font_scale (it will default to 1x1)
+
+#leave interface branding empty
+interface_branding:
+
+
+term_background: 9935453b
+term_margin: 0
+term_background_bright: ffffff
+
+term_foreground: 67d97a
+
+term_palette: 000000;5c110c;074224;4d1c0d;00594d;f5c2e7;16de6d;989e9b
+term_palette_bright: 2f3030;ff0000;16de6d;f7cd34;0ddeaa;f5c2e7;16de6d;ffffff
+
+interface_help_hidden: yes
