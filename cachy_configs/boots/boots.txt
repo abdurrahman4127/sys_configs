@@ -1,0 +1,31 @@
+sudo pacman -S ntfs-3g
+sudo mkdir -p /mnt/sdb1 /mnt/sdb2 /mnt/sdb3
+sudo mount -t ntfs-3g /dev/sdb3 /home/temp0rary/
+sudo mount -t ntfs-3g /dev/sdb1 /home/stuDie
+sudo mount -t ntfs-3g /dev/sdb2 /home/rand0m/
+sudo mount -t ntfs-3g /dev/sdb2 /home
+
+# the changes i made to the fstab file:
+------------------------------------------------------------------------------------------------------------------
+  GNU nano 9.1                                           /etc/fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a device; this may
+# be used with UUID= as a more robust way to name devices that works even if
+# disks are added and removed. See fstab(5).
+#
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>
+UUID=D21B-5A96                            /boot          vfat    defaults,umask=0077 0 2
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /              btrfs   subvol=/@,defaults,noatime,compress=zstd:1 0 0
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /home          btrfs   subvol=/@home,defaults,noatime,compress=zstd:1 0 0
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /root          btrfs   subvol=/@root,defaults,noatime,compress=zstd:1 0 0
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /srv           btrfs   subvol=/@srv,defaults,noatime,compress=zstd:1 0 0
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /var/cache     btrfs   subvol=/@cache,defaults,noatime,compress=zstd:1 0 0
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /var/tmp       btrfs   subvol=/@tmp,defaults,noatime,compress=zstd:1 0 0
+UUID=421e376c-698c-4edc-8ebb-0b1077f4ca2b /var/log       btrfs   subvol=/@log,defaults,noatime,compress=zstd:1 0 0
+tmpfs                                     /tmp           tmpfs   defaults,noatime,mode=1777 0 0
+
+# drives' UUID:
+UUID=7E86CAAE86CA65ED /mnt/stuDie    ntfs-3g defaults,nofail 0 0
+UUID=2CBCB5BEBCB5833E /mnt/rand0m   ntfs-3g defaults,nofail 0 0
+UUID=5E4012C44012A2B7 /mnt/temp0rary ntfs-3g defaults,nofail 0 0
