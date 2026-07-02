@@ -20,6 +20,11 @@ alias zzz='poweroff'
 alias ff='fastfetch'
 alias cpy='xclip -selection clipboard'
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia '
+# -----------------
+
+# --------- to compress pdf
+alias compress_pdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dBATCH -sOutputFile='
+
 
 # Misc
 alias ..='cd ..'
@@ -28,14 +33,14 @@ alias ...='cd ../..'
 # Package management
 alias install='sudo pacman -S'
 alias reinstall='sudo pacman -S --overwrite "*"'
-alias uu='yay -Syu && arch-update'
+alias uu='shelly upgrade && cachy-update'
 alias cc='sudo pacman -Sc'
 
 # Git
 alias push='git push origin main'
 
 
-# customized fish prompt
+# ----------- customized fish prompt
 function fish_prompt
     set -l last_status $status
     set -l duration ""
@@ -66,7 +71,7 @@ function fish_prompt
         set_color brblack
         echo -n " ("
         set_color magenta
-        echo -n "⎇  $git_branch"
+        echo -n "⎇ :$git_branch"
         set_color brblack
         echo -n ")"
     end
