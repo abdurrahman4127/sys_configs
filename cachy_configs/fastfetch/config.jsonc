@@ -3,8 +3,9 @@
   "logo": {
     "source": "/home/ar/.config/fastfetch/logo.png",
     "type": "chafa",
-    "width": 53,
-    "height": 23
+    "width": 50,
+    "height": 20,
+    "padding": {  "left": 2 }
   },
   "display": {
     "separator": "  ",
@@ -15,20 +16,19 @@
       "type": 2
     },
     "key": {
-      "width": 18
+      "width": 15
     }
   },
   "modules": [
     "title",
     "separator",
-    { "type": "os", "key": "󰣇 OS", "keyColor": "blue" },
+    { "type": "os", "key": "󰻀 OS", "keyColor": "blue" },
     { "type": "host", "key": "󰌢 Host", "keyColor": "blue" },
     { "type": "kernel", "key": " Kernel", "keyColor": "blue" },
     { "type": "uptime", "key": "󱎫 Uptime", "keyColor": "blue" },
     { "type": "packages", "key": "󰏖 Packages", "keyColor": "blue" },
     { "type": "de", "key": " DE", "keyColor": "magenta" },
     { "type": "wm", "key": " WM", "keyColor": "magenta" },
-    { "type": "theme", "key": "󰉼 Theme", "keyColor": "magenta" },
     { "type": "cpu", "key": " CPU", "temp": true, "keyColor": "yellow" },
     { "type": "gpu", "key": "󰢮 GPU", "temp": true, "keyColor": "yellow" },
     { "type": "board", "key": "󰢮 Motherboard", "keyColor": "yellow" },
@@ -41,11 +41,10 @@
     { "type": "display", "key": "󰍹 Monitor", "keyColor": "green" },
     { "type": "shell", "key": "󱆃 Shell", "keyColor": "green" },
     { "type": "terminal", "key": " Terminal", "keyColor": "green" },
-    { "type": "wifi", "key": " WiFi", "keyColor": "white" },
+    { "type": "wifi", "key": " WiFi", "keyColor": "white", "format": "{11} {4} @ {13} GHz" },
     { "type": "bluetooth", "key": " Bluetooth", "keyColor": "white" },
     { "type": "battery", "key": "󰁹 Battery", "keyColor": "red" },
     { "type": "poweradapter", "key": "󰚥 Power", "keyColor": "red" },
-    { "type": "sound", "key": "󱍚 Sound", "keyColor": "red" },
-    { "type": "media", "key": "󰝚 Media", "format": "{3} ➜ {1}", "keyColor": "red" }
+    { "type": "sound", "key": " Sound", "keyColor": "red" }
   ]
 }
