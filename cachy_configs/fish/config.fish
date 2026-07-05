@@ -33,7 +33,7 @@ alias ...='cd ../..'
 # Package management
 alias install='sudo pacman -S'
 alias reinstall='sudo pacman -S --overwrite "*"'
-alias uu='pacman -Syu && shelly upgrade && cachy-update'
+alias uu='sudo pacman -Syu && shelly upgrade && cachy-update'
 
 # Git
 alias push='git push origin main'
