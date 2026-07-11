@@ -30,7 +30,7 @@
   "RecommendedEnabled": false,
   "ProgressBarStyle": "Pacman",
   "ProgressBarFps": 2,
-  "ProgressBarWidth": 20,
+  "ProgressBarWidth": 10,
   "OutputMode": "singlepane",
   "SinglePaneMaxStickies": 6,
   "TrayAutoStart": false,
