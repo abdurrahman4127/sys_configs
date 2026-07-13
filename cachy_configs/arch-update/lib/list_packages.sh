@@ -16,13 +16,13 @@ spinner() {
 
     while kill -0 "$pid" 2>/dev/null; do
         for ((i=0; i<${#spin}; i++)); do
-            printf "\r:: Hold your horses... [%c]" "${spin:$i:1}"
+            printf "\r:: Hold your horses! Winter is coming... [%c]" "${spin:$i:1}"
             sleep "$delay"
             kill -0 "$pid" 2>/dev/null || break
         done
     done
 
-    printf "\r:: Hold your horses... [✓]\n"
+    printf "\r:: Hold your horses! Winter is coming... [✓]\n"
     tput cnorm 2>/dev/null
 }
 # ------------- cachy-update progress -------
