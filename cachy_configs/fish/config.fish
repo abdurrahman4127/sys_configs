@@ -91,7 +91,7 @@ function fish_prompt
     
     # bottom line
     set_color brblack
-    echo -n "───"
+    echo -n "──"
     set_color --bold normal
     echo -n " \$ "
     set_color normal
