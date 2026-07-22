@@ -2,9 +2,9 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
 
 # overwrite greeting
 # potentially disabling fastfetch
-#function fish_greeting
+function fish_greeting
     # smth smth
-#end
+end
 
 # ----------------- from ParrotOS
 # Aliases
@@ -49,7 +49,7 @@ function fish_prompt
     
     # top line
     set_color normal
-    echo -n "╭─ "
+    #echo -n "╭─ "
     if test (id -u) -eq 0
         set_color red
         echo -n "root"
@@ -58,11 +58,12 @@ function fish_prompt
         echo -n (whoami)
     end
     set_color brblack
-    echo -n " ["
+    # echo -n " ["
+    echo -n " @ "
     set_color cyan
     echo -n (pwd | sed "s|$HOME|~|")
     set_color brblack
-    echo -n "]"
+    # echo -n "]"
     
     # git branch
     set -l git_branch (fish_git_prompt "%s" 2>/dev/null)
@@ -86,9 +87,12 @@ function fish_prompt
     echo ""
     
     # bottom line
-    set_color normal
-    echo -n "╰───"
+    set_color brblack
+    #echo -n "╰───"
+    echo -n "───"
     set_color --bold normal
     echo -n "❯ "
     set_color normal
 end
+
+# ----------- custom cachy-update 
