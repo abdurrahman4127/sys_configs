@@ -1,7 +1,7 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
-# overwrite greeting
-# potentially disabling fastfetch
+# overwrite greeting in fastfetch
+# uncomment to remove greeting
 #function fish_greeting
     # smth smth
 #end
@@ -49,7 +49,6 @@ function fish_prompt
     
     # top line
     set_color normal
-    #echo -n "╭─ "
     if test (id -u) -eq 0
         set_color red
         echo -n "root"
@@ -57,13 +56,13 @@ function fish_prompt
         set_color green
         echo -n (whoami)
     end
-    set_color brblack
-    # echo -n " ["
-    echo -n " @ "
+
+    set_color --bold normal
+    echo -n " ❯ "
+
     set_color cyan
     echo -n (pwd | sed "s|$HOME|~|")
     set_color brblack
-    # echo -n "]"
     
     # git branch
     set -l git_branch (fish_git_prompt "%s" 2>/dev/null)
@@ -77,8 +76,12 @@ function fish_prompt
     end
     
     if test $last_status -ne 0
+        set_color brblack
+	echo -n " ["
         set_color red
-        echo -n " ✗"
+        echo -n "✗"
+	set_color brblack
+	echo -n "]"
     end
     if test -n "$duration"
         set_color yellow
@@ -88,11 +91,9 @@ function fish_prompt
     
     # bottom line
     set_color brblack
-    #echo -n "╰───"
     echo -n "───"
     set_color --bold normal
-    echo -n "❯ "
+    echo -n " \$ "
     set_color normal
+	
 end
-
-# ----------- custom cachy-update 
