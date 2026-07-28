@@ -1,0 +1,50 @@
+# STARTED AT: 2026-07-27 16:16:45.658716634 +06:00
+# VERSION: 0.29.0
+# ARGS: rate-mirrors --save /tmp/tmp.OpfPV5hU44 cachyos
+# MIRRORS LEFT AFTER FILTERING: 29
+# JUMP #1
+# EXPLORING BD
+# VISITED BD
+# BLANK ITERATION
+# COUNTRY JUMPING YIELDED TOO FEW MIRRORS (0), ADDING OTHERS TO UNLABELED
+# 
+
+# TESTING UNLABELED MIRRORS
+# SpeedTestResult { speed: 124.1 KB/s; elapsed: 919ms; connection_time: 268ms }
+# TOO FEW BYTES LOADED https://mirror.keiminem.com/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror5.krfoss.org/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror.krfoss.org/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror.hjk.gg/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirrors.nguyenhoang.cloud/cachyos/repo/
+# TOO FEW BYTES LOADED https://cdn.lansing2600.org/cachyos/repo/
+# TOO FEW BYTES LOADED https://us.cachyos.org/repo/
+# TOO FEW BYTES LOADED https://us-mnz.soulharsh007.dev/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror2.keiminem.com/cachyos/repo/
+# TOO FEW BYTES LOADED https://at.cachyos.org/repo/
+# TOO FEW BYTES LOADED https://mirror.hb9hil.org/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror.bali0531.hu/repo/
+# TOO FEW BYTES LOADED https://nl.mirror.cx/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror.zyner.org/mirror/cachyos/repo/
+# TOO FEW BYTES LOADED https://mirror.lesviallon.fr/cachy/repo/
+# TOO FEW BYTES LOADED https://mirror.nju.edu.cn/cachyos/repo/
+# SpeedTestResult { speed: 143.3 KB/s; elapsed: 569ms; connection_time: 4.55s }
+# TOO FEW BYTES LOADED https://cachyos.next-works.it/repo/
+# TOO FEW BYTES LOADED https://archlinux.gay/cachy/repo/
+# TOO FEW BYTES LOADED https://cachyos.doridian.net/repo/
+# FAILED TO CONNECT TO https://mirror.mergedcloud.de/cachyos/repo/x86_64/cachyos/cachyos.files
+# FAILED TO CONNECT TO https://mirror.cachy-arch.ru/cachyos/repo/x86_64/cachyos/cachyos.files
+# FAILED TO CONNECT TO https://wan.metrosg.ru/cachyos/repo/x86_64/cachyos/cachyos.files
+# TOO FEW BYTES LOADED https://cachyos-mirror.m1k.cloud/repo/
+# FAILED TO CONNECT TO https://mirrors.lansing2600.org/cachyos/repo/x86_64/cachyos/cachyos.files
+# TOO FEW BYTES LOADED https://mirror.jura12.ru/repo/
+# TOO FEW BYTES LOADED https://no.mirror.cx/cachyos/repo/
+# FAILED TO CONNECT TO https://ca.mirror.cx/cachyos/repo/x86_64/cachyos/cachyos.files
+# 
+
+# RE-TESTING TOP MIRRORS
+# TOO FEW BYTES LOADED https://mirrors.ustc.edu.cn/cachyos/repo/
+# SpeedTestResult { speed: 166.6 KB/s; elapsed: 881ms; connection_time: 1.17s }
+# ==== RESULTS (top re-tested) ====
+#   1. SpeedTestResult { speed: 166.6 KB/s; elapsed: 881ms; connection_time: 1.17s } -> https://cdn77.cachyos.org/repo/
+# FINISHED AT: 2026-07-27 16:17:00.171848022 +06:00
+Server = https://cdn77.cachyos.org/repo/$arch_v4/$repo
