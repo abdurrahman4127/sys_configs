@@ -20,6 +20,7 @@ alias zzz='poweroff'
 alias ff='fastfetch'
 alias cpy='xclip -selection clipboard'
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia '
+alias cat='bat'
 # -----------------
 
 # --------- to compress pdf
@@ -33,7 +34,7 @@ alias ...='cd ../..'
 # Package management
 alias install='sudo pacman -S'
 alias reinstall='sudo pacman -S --overwrite "*"'
-alias uu='sudo pacman -Syu && shelly upgrade && cachy-update'
+alias uu='sudo pacman -Syu && shelly -U && cachy-update'
 
 # Git
 alias push='git push origin main'
@@ -48,6 +49,8 @@ function fish_prompt
     end
     
     # top line
+    set_color brblack
+    echo -n "╭─ "
     set_color normal
     if test (id -u) -eq 0
         set_color red
@@ -57,8 +60,8 @@ function fish_prompt
         echo -n (whoami)
     end
 
-    set_color --bold normal
-    echo -n " ❯ "
+    set_color brblack
+    echo -n " @ "
 
     set_color cyan
     echo -n (pwd | sed "s|$HOME|~|")
@@ -91,9 +94,9 @@ function fish_prompt
     
     # bottom line
     set_color brblack
-    echo -n "──"
+    echo -n "╰──"
     set_color --bold normal
-    echo -n " \$ "
+    echo -n " ❯ "
     set_color normal
 	
 end
