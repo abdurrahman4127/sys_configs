@@ -11,13 +11,46 @@ spinner() {
     local pid=$1
     local delay=0.1
     local spin='|/-\'
+    
+    local words=("Hold" "your" "horses!" "Winter" "is" "coming...")
+    local num_words=${#words[@]}
+    local word_idx=0
+    local tick_counter=0
+    
+    # Collection of vibrant ANSI colors (Red, Green, Yellow, Blue, Magenta, Cyan)
+    local colors=("\033[1;31m" "\033[1;32m" "\033[1;33m" "\033[1;34m" "\033[1;35m" "\033[1;36m")
+    local reset="\033[0m"
+    
+    # Initialize the first random color
+    local current_color="${colors[$((RANDOM % ${#colors[@]}))]}"
 
     tput civis 2>/dev/null
 
     while kill -0 "$pid" 2>/dev/null; do
         for ((i=0; i<${#spin}; i++)); do
-            printf "\r:: Hold your horses! Winter is coming... [%c]" "${spin:$i:1}"
+            local build_str=""
+            
+            # Construct the line with the current color choice
+            for idx in "${!words[@]}"; do
+                if [ "$idx" -eq "$word_idx" ]; then
+                    build_str+="${current_color}${words[$idx]}${reset} "
+                else
+                    build_str+="${words[$idx]} "
+                fi
+            done
+            
+            printf "\r:: %b[%c]" "$build_str" "${spin:$i:1}"
+            
             sleep "$delay"
+            ((tick_counter++))
+            
+            # Every 10 ticks (1.0 second), advance the word and pick a new random color
+            if [ "$tick_counter" -ge 10 ]; then
+                word_idx=$(( (word_idx + 1) % num_words ))
+                current_color="${colors[$((RANDOM % ${#colors[@]}))]}"
+                tick_counter=0
+            fi
+            
             kill -0 "$pid" 2>/dev/null || break
         done
     done
