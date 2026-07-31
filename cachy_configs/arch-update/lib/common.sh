@@ -67,39 +67,39 @@ fi
 # Definition of the main_msg function: Display a message as a main message
 main_msg() {
 	msg="${1}"
-	echo -e "${blue}==>${color_off}${bold} ${msg}${color_off}"
+	echo -e "${blue}[󰋽]${color_off}${bold} ${msg}${color_off}"
 }
 
 # Definition of the info_msg function: Display a message as an information message
 info_msg() {
 	msg="${1}"
-	echo -e "${green}==>${color_off}${bold} ${msg}${color_off}"
+	echo -e "${green}[󰋽]${color_off}${bold} ${msg}${color_off}"
 }
 
 # Definition of the ask_msg function: Display a message as an interactive question
 ask_msg() {
 	msg="${1}"
 	# shellcheck disable=SC2034
-	read -rp $"$(echo -e "${blue}->${color_off}${bold} ${msg}${color_off} ")" answer
+	read -rp $"$(echo -e "${blue}[]${color_off}${bold} ${msg}${color_off} ")" answer
 }
 
 # Definition of the ask_msg_array function: Display a message as an interactive question with multiple possible answers 
 ask_msg_array() {
 	msg="${1}"
 	# shellcheck disable=SC2034
-	read -rp $"$(echo -e "${blue}->${color_off}${bold} ${msg}${color_off} ")" -a answer_array
+	read -rp $"$(echo -e "${blue}[]${color_off}${bold} ${msg}${color_off} ")" -a answer_array
 }
 
 # Definition of the warning_msg function: Display a message as a warning message
 warning_msg() {
 	msg="${1}"
-	echo -e "${yellow}==> $(eval_gettext "WARNING"):${color_off}${bold} ${msg}${color_off}"
+	echo -e "${yellow}[] $(eval_gettext "WARNING"):${color_off}${bold} ${msg}${color_off}"
 }
 
 # Definition of the error_msg function: Display a message as an error message
 error_msg() {
 	msg="${1}"
-	echo -e >&2 "${red}==> $(eval_gettext "ERROR"):${color_off}${bold} ${msg}${color_off}"
+	echo -e >&2 "${red}[] $(eval_gettext "ERROR"):${color_off}${bold} ${msg}${color_off}"
 }
 
 # Definition of the continue_msg function: Display the continue message
