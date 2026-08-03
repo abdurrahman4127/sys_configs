@@ -36,6 +36,9 @@ alias install='sudo pacman -S'
 alias reinstall='sudo pacman -S --overwrite "*"'
 alias uu='sudo pacman -Syu && shelly -U && cachy-update'
 
+# to abrupt active update commands
+alias cc='rm -f /tmp/arch-update.lock'
+
 # Git
 alias push='git push origin main'
 
