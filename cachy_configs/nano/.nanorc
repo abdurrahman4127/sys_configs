@@ -1,0 +1,45 @@
+## ============================================================
+## Nano — clean Neovim-inspired configuration
+## ============================================================
+
+## Line numbers
+set linenumbers
+
+## Make line numbers unobtrusive
+set numbercolor normal,normal
+
+## Show cursor position
+set constantshow
+
+## Mouse support
+set mouse
+
+## Automatically indent
+set autoindent
+
+## Convert TAB to spaces
+set tabstospaces
+
+## Four spaces per indentation level
+set tabsize 4
+
+## Don't hard-wrap lines
+set nowrap
+
+## Compact interface
+set minibar
+
+## Matching brackets
+set matchbrackets "(<[{)>]}"
+
+## ============================================================
+## Syntax highlighting
+## ============================================================
+
+include "/usr/share/nano/c.nanorc"
+include "/usr/share/nano/python.nanorc"
+include "/usr/share/nano/sh.nanorc"
+include "/usr/share/nano/lua.nanorc"
+include "/usr/share/nano/json.nanorc"
+include "/usr/share/nano/yaml.nanorc"
+include "/usr/share/nano/markdown.nanorc"
