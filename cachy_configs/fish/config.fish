@@ -6,7 +6,7 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
     # smth smth
 #end
 
-# ----------------- from ParrotOS
+# -----------------
 # Aliases
 alias ll='ls -lh'
 alias la='ls -lha'
@@ -22,6 +22,9 @@ alias cpy='xclip -selection clipboard'
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia '
 alias cat='bat'
 alias pdfdiff='diffpdf'
+alias vim='nvim'
+alias vi='nvim'
+alias nv='nvim'
 # -----------------
 
 # --------- to compress pdf
@@ -38,7 +41,7 @@ alias reinstall='sudo pacman -S --overwrite "*"'
 alias uu='sudo pacman -Syu && shelly -U && cachy-update'
 
 # to abrupt active update commands
-alias cc='rm -f /tmp/arch-update.lock'
+alias cc='kill -9 $(pidof cachy-update) && rm -f /tmp/arch-update.lock && sudo rm /var/lib/pacman/db.lck'
 
 # Git
 alias push='git push origin main'
