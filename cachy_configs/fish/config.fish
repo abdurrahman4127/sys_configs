@@ -22,9 +22,6 @@ alias cpy='xclip -selection clipboard'
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia '
 alias cat='bat'
 alias pdfdiff='diffpdf'
-alias vim='nvim'
-alias vi='nvim'
-alias nv='nvim'
 # -----------------
 
 # --------- to compress pdf
@@ -107,3 +104,11 @@ function fish_prompt
     set_color normal
 	
 end
+
+# nvim configs
+alias vim='nvim'
+alias vi='nvim'
+alias nv='nvim'
+export EDITOR="nvim"
+export VISUAL="nvim"
+# to make it work: sudo mkdir -p /root/.config && sudo ln -s ~/.config/nvim /root/.config/nvim
