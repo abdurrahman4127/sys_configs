@@ -9,50 +9,58 @@ info_msg "$(eval_gettext "Looking for updates...\n")"
 # ------------- cachy-update progress -------
 spinner() {
     local pid=$1
-    local delay=0.1
+    local delay=0.09 # 90ms per frame
     local spin='|/-\'
     
-    local words=("Hold" "your" "horses!" "Winter" "is" "coming...")
-    local num_words=${#words[@]}
-    local word_idx=0
-    local tick_counter=0
+    # Base text string
+    local full_text="hold your horses! winter is coming..."
+    local text_len=${#full_text}
     
-    # Collection of vibrant ANSI colors (Red, Green, Yellow, Blue, Magenta, Cyan)
-    local colors=("\033[1;31m" "\033[1;32m" "\033[1;33m" "\033[1;34m" "\033[1;35m" "\033[1;36m")
+    # 12 high-vibrancy ANSI 256-color palette tokens
+    local colors=(
+        "\033[38;5;196m" # Vivid Red
+        "\033[38;5;208m" # Bright Orange
+        "\033[38;5;220m" # Vibrant Yellow
+        "\033[38;5;118m" # Neon Green
+        "\033[38;5;46m"  # Emerald Green
+        "\033[38;5;51m"  # Electric Cyan
+        "\033[38;5;33m"  # Sky Blue
+        "\033[38;5;21m"  # Deep Blue
+        "\033[38;5;93m"  # Intense Purple
+        "\033[38;5;13m"  # Bright Violet
+        "\033[38;5;201m" # Hot Pink
+        "\033[38;5;205m" # Rose Pink
+    )
+    local num_colors=${#colors[@]}
     local reset="\033[0m"
-    
-    # Initialize the first random color
-    local current_color="${colors[$((RANDOM % ${#colors[@]}))]}"
 
     tput civis 2>/dev/null
 
+    local active_idx=0
+    local spin_idx=0
+
     while kill -0 "$pid" 2>/dev/null; do
-        for ((i=0; i<${#spin}; i++)); do
-            local build_str=""
+        local build_str=""
+        local highlight_color="${colors[$(( active_idx % num_colors ))]}"
+        
+        for ((char_idx=0; char_idx<text_len; char_idx++)); do
+            local char="${full_text:$char_idx:1}"
             
-            # Construct the line with the current color choice
-            for idx in "${!words[@]}"; do
-                if [ "$idx" -eq "$word_idx" ]; then
-                    build_str+="${current_color}${words[$idx]}${reset} "
-                else
-                    build_str+="${words[$idx]} "
-                fi
-            done
-            
-            printf "\r:: %b[%c]" "$build_str" "${spin:$i:1}"
-            
-            sleep "$delay"
-            ((tick_counter++))
-            
-            # Every 10 ticks (1.0 second), advance the word and pick a new random color
-            if [ "$tick_counter" -ge 10 ]; then
-                word_idx=$(( (word_idx + 1) % num_words ))
-                current_color="${colors[$((RANDOM % ${#colors[@]}))]}"
-                tick_counter=0
+            if [ "$char_idx" -eq "$active_idx" ]; then
+                # Highlight active char AND convert to UPPERCASE (${char^^})
+                build_str+="${highlight_color}${char^^}${reset}"
+            else
+                # Non-active char stays uncolored and lowercase (${char,,})
+                build_str+="${char,,}"
             fi
-            
-            kill -0 "$pid" 2>/dev/null || break
         done
+        
+        printf "\r:: %b [%c]" "$build_str" "${spin:$spin_idx:1}"
+        
+        active_idx=$(( (active_idx + 1) % text_len ))
+        spin_idx=$(( (spin_idx + 1) % ${#spin} ))
+        
+        sleep "$delay"
     done
 
     printf "\r:: Hold your horses! Winter is coming... [✓]\n"
