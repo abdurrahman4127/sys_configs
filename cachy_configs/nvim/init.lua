@@ -24,6 +24,7 @@ vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 
 vim.opt.mouse = "a"
+vim.opt.clipboard = "unnamedplus"
 
 -- cursor
 vim.opt.guicursor = "n-v-c:block,i:ver25,r:hor20"
@@ -52,6 +53,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- shortcuts
 vim.keymap.set("n", "<C-s>", "<cmd>write<CR>", { silent = true })
+vim.keymap.set('n', '<C-n>', ':Neotree toggle reveal<CR>', { silent = true })
 vim.keymap.set("n", "<C-f>", "/", { silent = false })
 vim.keymap.set("n", "<C-q>", "<cmd>confirm qall<CR>", { silent = true })
 
