@@ -13,7 +13,7 @@ spinner() {
     local spin='|/-\'
     
     # Base text string
-    local full_text="hold your horses! winter is coming..."
+    local full_text="hold the door! winter is coming..."
     local text_len=${#full_text}
     
     # 12 high-vibrancy ANSI 256-color palette tokens
@@ -63,7 +63,7 @@ spinner() {
         sleep "$delay"
     done
 
-    printf "\r:: Hold your horses! Winter is coming... [✓]\n"
+    printf "\r:: Hold the door! Winter is coming... [✓]\n"
     tput cnorm 2>/dev/null
 }
 # ------------- cachy-update progress -------
