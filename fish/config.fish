@@ -10,6 +10,7 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
 # Aliases
 alias ll='ls -lh'
 alias la='ls -lha'
+alias l='ls'
 alias please='sudo'
 alias fucking='sudo'
 alias x='exit'
