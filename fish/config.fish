@@ -39,7 +39,7 @@ alias reinstall='sudo pacman -S --overwrite "*"'
 alias uu='sudo pacman -Syu && shelly -U && cachy-update'
 
 # to abrupt active update commands
-alias cc='kill -9 $(pidof cachy-update) && rm -f /tmp/arch-update.lock && sudo rm /var/lib/pacman/db.lck'
+alias cc='rm -f /tmp/arch-update.lock && sudo rm -f /var/lib/pacman/db.lck'
 
 # Git
 alias push='git push origin main'
