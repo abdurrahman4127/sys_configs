@@ -3,7 +3,7 @@
   "logo": {
     "source": "/home/ar/.config/fastfetch/logo.png",
     "type": "chafa",
-    "width": 50,
+    "width": 55,
     "height": 20,
     "padding": {  "left": 2 },
     "position": "top"
@@ -30,22 +30,21 @@
     { "type": "packages", "key": "󰏖 Packages", "keyColor": "blue" },
     { "type": "de", "key": " DE", "keyColor": "magenta" },
     { "type": "wm", "key": " WM", "keyColor": "magenta" },
-    { "type": "cpu", "key": " CPU", "temp": true, "keyColor": "yellow" },
-    { "type": "gpu", "key": "󰢮 GPU", "temp": true, "keyColor": "yellow" },
-    { "type": "board", "key": "󰢮 Motherboard", "keyColor": "yellow" },
-    { "type": "bios", "key": "󰾲 BIOS", "keyColor": "yellow" },
-    { "type": "memory", "key": "󰍛 RAM", "keyColor": "yellow" },
+    { "type": "cpu", "key": "󰻠 CPU", "temp": true, "keyColor": "yellow" },
+    { "type": "gpu", "key": "󰾲 GPU", "temp": true, "keyColor": "yellow" },
+    { "type": "bios", "key": " BIOS", "keyColor": "yellow" },
+    { "type": "memory", "key": " RAM", "keyColor": "yellow" },
     { "type": "swap", "key": "󰓡 Swap", "keyColor": "yellow" },
-    { "type": "disk", "key": "󱛟 NVMe 1 (/)", "folders": "/", "keyColor": "yellow" },
-    { "type": "disk", "key": "󱛟 NVMe 2", "folders": "/mnt/nvme2tb", "keyColor": "yellow" },
-    { "type": "disk", "key": "󱛟 NVMe 3", "folders": "/mnt/kingston1tb", "keyColor": "yellow" },
+    { "type": "disk", "key": "󱛟 root", "folders": "/", "keyColor": "yellow" },
+    { "type": "disk", "key": " /home/stuDie", "folders": "/home/stuDie", "keyColor": "yellow" },
+    { "type": "disk", "key": " /home/rand0m", "folders": "/home/rand0m", "keyColor": "yellow" },
+    { "type": "disk", "key": " /home/temp0rary", "folders": "/home/temp0rary", "keyColor": "yellow" },
     { "type": "display", "key": "󰍹 Monitor", "keyColor": "green" },
     { "type": "shell", "key": "󱆃 Shell", "keyColor": "green" },
     { "type": "terminal", "key": " Terminal", "keyColor": "green" },
     { "type": "wifi", "key": " WiFi", "keyColor": "white", "format": "{11} {4} @ {13} GHz" },
     { "type": "bluetooth", "key": " Bluetooth", "keyColor": "white" },
     { "type": "battery", "key": "󰁹 Battery", "keyColor": "red" },
-    { "type": "poweradapter", "key": "󰚥 Power", "keyColor": "red" },
-    { "type": "sound", "key": " Sound", "keyColor": "red" }
+    { "type": "poweradapter", "key": "󰚥 Power", "keyColor": "red" }
   ]
 }
