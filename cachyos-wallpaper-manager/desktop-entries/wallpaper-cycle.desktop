@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Cycle Wallpaper
+Comment=Cycle to the next CachyOS wallpaper
+Exec=/home/ar/.local/bin/cycle-wallpaper.sh
+Icon=preferences-desktop-wallpaper
+Terminal=false
+X-KDE-GlobalAccel-CommandShortcut=true
+X-GNOME-Autostart-enabled=false

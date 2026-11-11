@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Random Wallpaper
+Comment=Pick a random CachyOS wallpaper at every login
+Exec=/home/ar/.local/bin/random-wallpaper.sh
+Icon=preferences-desktop-wallpaper
+Terminal=false
+X-KDE-autostart-after=panel
+X-GNOME-Autostart-enabled=true
