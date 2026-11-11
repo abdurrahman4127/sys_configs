@@ -8,63 +8,33 @@ echo "│        TorrentSync           │"
 echo "╰──────────────────────────────╯"
 echo
 
-sources=()
+# Fixed source directories
+sources=(
+    "/home/rand0m"
+    "/home/temp0rary"
+    "/home/stuDie/sub-torrents"
+)
 
-while true; do
-    read -rp "Source directory: " src
+# Fixed target directory
+target="/home/ar/torrents"
 
-    src="${src%/}"
-
-    if [[ -z "$src" ]]; then
-        echo "  ✗ Directory cannot be empty."
-        continue
-    fi
-
+# Validate source directories
+for src in "${sources[@]}"; do
     if [[ ! -d "$src" ]]; then
-        echo "  ✗ Directory does not exist: $src"
-        continue
+        echo "  ✗ Source directory does not exist: $src"
+        exit 1
     fi
-
-    sources+=("$src")
-
-    read -rp "Add another source? [Y/n]: " another
-
-    if [[ "$another" =~ ^[Nn]$ ]]; then
-        break
-    fi
-
-    echo
 done
 
-echo
+# Create target directory if necessary
+if [[ ! -d "$target" ]]; then
+    echo "Target directory does not exist. Creating it..."
+    mkdir -p "$target" || {
+        echo "  ✗ Failed to create target directory: $target"
+        exit 1
+    }
+fi
 
-while true; do
-    read -rp "Target directory: " target
-
-    target="${target%/}"
-
-    if [[ -z "$target" ]]; then
-        echo "  ✗ Target cannot be empty."
-        continue
-    fi
-
-    if [[ ! -d "$target" ]]; then
-        read -rp "  Directory doesn't exist. Create it? [Y/n]: " create
-
-        if [[ ! "$create" =~ ^[Nn]$ ]]; then
-            mkdir -p "$target" || {
-                echo "  ✗ Failed to create target directory."
-                exit 1
-            }
-        else
-            continue
-        fi
-    fi
-
-    break
-done
-
-echo
 echo "Sources:"
 for src in "${sources[@]}"; do
     echo "  → $src"
@@ -91,9 +61,7 @@ skipped=0
 failed=0
 
 for src in "${sources[@]}"; do
-
     while IFS= read -r -d '' dir; do
-
         name="${dir##*/}"
 
         [[ "$name" == ".Trash-1000" ]] && continue
@@ -122,7 +90,6 @@ for src in "${sources[@]}"; do
             ! -name ".Trash-1000" \
             -print0
     )
-
 done
 
 echo
