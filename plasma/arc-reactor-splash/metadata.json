@@ -1,0 +1,17 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "X-Plasma-APIVersion": "2",
+    "KPlugin": {
+        "Id": "arc-reactor",
+        "Name": "Arc Reactor",
+        "Description": "Arc reactor animation as the Plasma startup splash",
+        "Version": "1.0",
+        "License": "GPL-2.0+",
+        "Category": "",
+        "Authors": [
+            {
+                "Name": "ar"
+            }
+        ]
+    }
+}
