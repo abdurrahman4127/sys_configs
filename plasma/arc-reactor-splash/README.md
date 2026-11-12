@@ -3,6 +3,11 @@
 A custom Plasma "look-and-feel" package whose only job is to play
 `arc-reactor.gif` fullscreen while the desktop loads after login.
 
+![Arc reactor splash — animated preview](contents/splash/images/arc-reactor.gif)
+
+<p align="center"><em>What you see after entering your password: the reactor
+fills the screen and loops until Plasma is ready.</em></p>
+
 ## How it works
 
 `ksplashqml` renders `contents/splash/Splash.qml` at login. That file is an
