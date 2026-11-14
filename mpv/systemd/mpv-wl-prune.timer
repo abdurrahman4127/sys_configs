@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily prune of mpv watch-later entries older than 14 days
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=1h
+Persistent=true
+Unit=mpv-wl-prune.service
+
+[Install]
+WantedBy=timers.target

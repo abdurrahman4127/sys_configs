@@ -1,0 +1,9 @@
+[Unit]
+Description=Prune stale mpv watch-later entries
+Documentation=file:///home/ar/sys_configs/mpv/README.md
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/mpv-wl-prune
+Nice=19
+IOSchedulingClass=idle

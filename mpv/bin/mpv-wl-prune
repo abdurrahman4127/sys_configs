@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# mpv-wl-prune -- delete stale mpv watch-later entries.
+#
+# mpv stores one small file per resume slot in
+#   ${XDG_STATE_HOME:-$HOME/.local/state}/mpv/watch_later
+# and never garbage-collects them. Deleting, renaming or moving a video leaves
+# its entry behind forever, and every distinct path spelling (symlink, renamed
+# folder, ephemeral stream URL) creates another one.
+#
+# This prunes by age (mtime), which mpv refreshes every time it saves that
+# video's position. Entries untouched for RETENTION_DAYS days are removed,
+# whether or not the video still exists. Age is used because the file name is
+# an MD5 of the path -- it cannot be reversed to check existence unless
+# --write-filename-in-watch-later-config is enabled.
+#
+# Usage: mpv-wl-prune [-n|--dry-run] [-h|--help]
+# Env:   MPV_WL_RETENTION_DAYS  retention in days (default: 14)
+#        XDG_STATE_HOME         state root (default: ~/.local/state)
+set -u
+
+WL="${XDG_STATE_HOME:-$HOME/.local/state}/mpv/watch_later"
+DAYS="${MPV_WL_RETENTION_DAYS:-14}"
+DRY=0
+
+for arg in "$@"; do
+    case "$arg" in
+        -n|--dry-run) DRY=1 ;;
+        -h|--help) sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        *) printf 'mpv-wl-prune: unknown argument: %s\n' "$arg" >&2; exit 2 ;;
+    esac
+done
+
+[[ -d $WL ]] || exit 0
+[[ $DAYS =~ ^[0-9]+$ ]] || { printf 'mpv-wl-prune: invalid retention: %s\n' "$DAYS" >&2; exit 2; }
+
+cutoff=$(( $(date +%s) - DAYS * 86400 ))
+removed=0
+
+while IFS= read -r -d '' entry; do
+    mtime=$(stat -c %Y -- "$entry" 2>/dev/null) || continue
+    (( mtime < cutoff )) || continue
+    if (( DRY )); then
+        printf 'would remove: %s  (last saved %s)\n' \
+            "$(basename "$entry")" "$(date -d "@$mtime" '+%Y-%m-%d %H:%M')"
+    else
+        rm -f -- "$entry"
+    fi
+    removed=$((removed + 1))
+done < <(find "$WL" -maxdepth 1 -type f -print0 2>/dev/null)
+
+label=entries
+(( removed == 1 )) && label=entry
+printf 'mpv-wl-prune: %d %s older than %dd%s\n' \
+    "$removed" "$label" "$DAYS" "$([[ $DRY -eq 1 ]] && printf ' (dry run)')"

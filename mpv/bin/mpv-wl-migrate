@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""One-off migration: rewrite path-keyed mpv watch-later entries to filename keys.
+
+Run after setting ignore-path-in-watch-later-config=yes. Only entries whose
+original path can still be identified (because the file still exists) can be
+migrated; the rest are unrecoverable and are left for mpv-wl-prune to age out.
+"""
+import hashlib
+import os
+import re
+import sys
+
+WL = os.path.join(os.environ.get("XDG_STATE_HOME", os.path.expanduser("~/.local/state")),
+                  "mpv", "watch_later")
+ROOTS = ["/home/ar/torrents", "/home/temp0rary", "/home/rand0m", "/home/stuDie/sub-torrents"]
+EXTS = {".mkv", ".mp4", ".avi", ".m4v", ".mov", ".ts", ".webm", ".wmv", ".flv"}
+DRY = "-n" in sys.argv or "--dry-run" in sys.argv
+
+
+def md5(s):
+    return hashlib.md5(s.encode()).hexdigest().upper()
+
+
+def main():
+    if not os.path.isdir(WL):
+        print(f"no watch_later dir: {WL}")
+        return 0
+
+    by_path = {}
+    for root in ROOTS:
+        for dp, _, fns in os.walk(root, followlinks=True):
+            for fn in fns:
+                if os.path.splitext(fn)[1].lower() not in EXTS:
+                    continue
+                p = os.path.join(dp, fn)
+                variants = {
+                    p,
+                    os.path.realpath(p),
+                    # older saves may predate the "[x] " watched-marker prefix
+                    "/".join(re.sub(r"^\[x\]\s*", "", c) for c in p.split("/")),
+                    # qBittorrent used to save under a capital-T Torrents dir
+                    p.replace("/home/ar/torrents/", "/home/ar/Torrents/"),
+                }
+                for v in variants:
+                    by_path.setdefault(md5(v), p)
+
+    migrated = skipped = 0
+    for name in sorted(os.listdir(WL)):
+        entry = os.path.join(WL, name)
+        if not os.path.isfile(entry):
+            continue
+        lines = open(entry, encoding="utf-8", errors="replace").read().splitlines()
+        if not lines or lines[0].startswith("#"):
+            continue  # already filename-keyed, or a redirect marker
+        path = by_path.get(name)
+        if not path:
+            continue
+        new_name = md5(os.path.basename(path))
+        new_entry = os.path.join(WL, new_name)
+        if os.path.exists(new_entry) and os.path.getmtime(new_entry) >= os.path.getmtime(entry):
+            skipped += 1
+            continue
+        if DRY:
+            print(f"would migrate {name} -> {new_name}  ({os.path.basename(path)})")
+        else:
+            with open(new_entry, "w", encoding="utf-8") as f:
+                f.write("# " + os.path.basename(path) + "\n")
+                f.write("\n".join(lines) + "\n")
+            os.unlink(entry)
+            print(f"migrated {name} -> {new_name}  ({os.path.basename(path)})")
+        migrated += 1
+
+    print(f"mpv-wl-migrate: {migrated} migrated, {skipped} skipped (newer filename entry exists)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
